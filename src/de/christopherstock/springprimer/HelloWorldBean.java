@@ -1,13 +1,15 @@
 
     package de.christopherstock.springprimer;
 
+    import  org.springframework.beans.factory.*;
+
     /*******************************************************************************************************************
     *   The java bean 'HelloWorld'.
     *
     *   @author  Christopher Stock
     *   @version 1.0
     *******************************************************************************************************************/
-    public class HelloWorldBean
+    public class HelloWorldBean implements InitializingBean, DisposableBean
     {
         /***************************************************************************************************************
         *   The field 'message' being defined in the beans.xml file.
@@ -31,8 +33,30 @@
         ***************************************************************************************************************/
         public void printMessage()
         {
-            System.out.println("");
             System.out.println("The message is [" + this.message + "]");
-            System.out.println("");
+        }
+
+        /***************************************************************************************************************
+        *   Being invoked after the properties have been set.
+        ***************************************************************************************************************/
+        public void afterPropertiesSet()
+        {
+            System.out.println("afterPropertiesSet() has been invoked!");
+        }
+
+        /***************************************************************************************************************
+        *   Being invoked by the corresponding argument in the beans.xml file.
+        ***************************************************************************************************************/
+        public void init()
+        {
+            System.out.println("init() has been invoked!");
+        }
+
+        /***************************************************************************************************************
+        *   Being invoked when the bean is being destroyed.
+        ***************************************************************************************************************/
+        public void destroy()
+        {
+            System.out.println("destroy() has been invoked!");
         }
     }

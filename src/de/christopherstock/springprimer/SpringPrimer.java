@@ -1,6 +1,8 @@
 
     package de.christopherstock.springprimer;
 
+    import  org.springframework.beans.factory.*;
+    import  org.springframework.context.*;
     import  org.springframework.context.support.ClassPathXmlApplicationContext;
 
     /*******************************************************************************************************************
@@ -19,9 +21,19 @@
         public static void main(String[] args)
         {
             ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
-            HelloWorldBean                 bean    = (HelloWorldBean)context.getBean("HelloWorldBean");
 
-            bean.printMessage();
+            SpringPrimerExample spe   = new SpringPrimerExample();
+
+            HelloWorldBean      bean1 = (HelloWorldBean)context.getBean("HelloWorldBean");
+            HelloWorldBean      bean2 = (HelloWorldBean)context.getBean("HelloWorldBean");
+
+            bean1.setMessage("Overridden bean message..");
+
+            bean1.printMessage();
+            bean2.printMessage();
+
+            ApplicationContext  d;
+            BeanFactory         bf;
 
             context.close();
         }
